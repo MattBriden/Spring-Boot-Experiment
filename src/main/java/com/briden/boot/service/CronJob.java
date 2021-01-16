@@ -22,9 +22,11 @@ public class CronJob {
     @Scheduled(cron = "0 * * * * *")
     public void updateEntryData() {
         logger.info("Updating data entry");
+
         Entry entry = new Entry();
         entry.setId(UUID.randomUUID().toString());
         entry.setCompanyId(1L);
+
         entryRepository.save(entry);
     }
 }
