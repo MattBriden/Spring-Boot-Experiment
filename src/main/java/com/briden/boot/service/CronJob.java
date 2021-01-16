@@ -24,7 +24,7 @@ public class CronJob {
         logger.info("Updating data entry");
         Entry entry = new Entry();
         entry.setId(UUID.randomUUID().toString());
-        entry.setCompanyid(1L);
+        entry.setCompanyId(1L);
         entryRepository.save(entry);
     }
 }

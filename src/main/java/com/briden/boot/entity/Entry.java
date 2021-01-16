@@ -2,14 +2,21 @@ package com.briden.boot.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Data
 @NoArgsConstructor
+@Entity
+@Table(name = "entrys")
 public class Entry {
 
     @Id
     private String id;
 
-    private Long companyid;
+    @Column(name = "companyid")
+    private Long companyId;
 }
