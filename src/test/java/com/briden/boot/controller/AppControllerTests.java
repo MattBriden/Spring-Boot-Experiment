@@ -1,7 +1,7 @@
 package com.briden.boot.controller;
 
-import com.briden.boot.entity.Entry;
-import com.briden.boot.repository.IEntryRepository;
+import com.briden.boot.entity.jpa.Entry;
+import com.briden.boot.repository.jpa.IEntryRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

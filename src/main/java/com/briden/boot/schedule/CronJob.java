@@ -1,7 +1,7 @@
-package com.briden.boot.service;
+package com.briden.boot.schedule;
 
-import com.briden.boot.entity.Entry;
-import com.briden.boot.repository.IEntryRepository;
+import com.briden.boot.entity.jpa.Entry;
+import com.briden.boot.repository.jpa.IEntryRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

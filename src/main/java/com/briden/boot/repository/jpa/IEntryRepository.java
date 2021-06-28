@@ -1,6 +1,6 @@
-package com.briden.boot.repository;
+package com.briden.boot.repository.jpa;
 
-import com.briden.boot.entity.Entry;
+import com.briden.boot.entity.jpa.Entry;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

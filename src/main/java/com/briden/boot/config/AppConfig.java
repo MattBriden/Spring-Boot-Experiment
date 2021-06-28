@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @Configuration
-@EnableJpaRepositories("com.briden.boot.repository")
-@EntityScan("com.briden.boot.entity")
+@EnableJpaRepositories("com.briden.boot.repository.jpa")
+@EntityScan("com.briden.boot.entity.jpa")
 @EnableScheduling
 public class AppConfig {
 }

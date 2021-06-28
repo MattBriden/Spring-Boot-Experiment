@@ -1,4 +1,4 @@
-package com.briden.boot.entity;
+package com.briden.boot.entity.jpa;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
