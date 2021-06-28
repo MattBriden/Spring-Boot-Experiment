@@ -8,7 +8,6 @@ import com.briden.boot.service.MultiDatasourceService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import software.amazon.awssdk.services.dynamodb.model.ResourceNotFoundException;
 import java.util.UUID;
 
 import static org.junit.Assert.assertNotNull;
@@ -16,7 +15,6 @@ import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.when;
 
 public class MultiDatasourceTests extends BaseIntegrationTest {
 
