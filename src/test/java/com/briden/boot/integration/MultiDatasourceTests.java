@@ -1,5 +1,6 @@
 package com.briden.boot.integration;
 
+import com.briden.boot.config.DynamoTransactional;
 import com.briden.boot.entity.dynamo.DynamoEntry;
 import com.briden.boot.repository.dynamo.DynamoService;
 import com.briden.boot.repository.jpa.IEntryRepository;
@@ -45,15 +46,13 @@ public class MultiDatasourceTests extends BaseIntegrationTest {
     }
 
     @Test
-    public void testSavingMultipleDatasources_rollback() {
+    public void testSavingMultipleDatasources_delete() {
         String id = UUID.randomUUID().toString();
         DataResource resource = new DataResource();
         resource.setId(id);
         resource.setCompanyId("2");
 
         doThrow(RuntimeException.class).when(entryRepository).save(any());
-
-
         assertThrows(RuntimeException.class,
                 () -> multiDatasourceService.saveEntries(resource));
 
@@ -61,5 +60,24 @@ public class MultiDatasourceTests extends BaseIntegrationTest {
         entry.setId(id);
         entry.setCompanyId("2");
         assertNull(dynamoRepository.getItemFromDynamo(entry));
+    }
+
+    @Test
+    public void testSavingMultipleDatasources_rollback() {
+        String id = UUID.randomUUID().toString();
+        DataResource resource = new DataResource();
+        resource.setId(id);
+        resource.setCompanyId("3");
+
+        DynamoEntry entry = new DynamoEntry();
+        entry.setId(id);
+        entry.setCompanyId("4");
+        dynamoRepository.saveToDynamo(entry);
+
+        doThrow(RuntimeException.class).when(entryRepository).save(any());
+        assertThrows(RuntimeException.class,
+                () -> multiDatasourceService.saveEntries(resource));
+
+        assertNotNull(dynamoRepository.getItemFromDynamo(entry));
     }
 }
