@@ -10,6 +10,8 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.PersistenceException;
+
 @Aspect
 @Component
 public class DynamoTransaction {
@@ -36,7 +38,7 @@ public class DynamoTransaction {
         }
         try {
             pjp.proceed();
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             if (entry == null && oldDynamoEntry.getId() != null) {
                 dynamoEntryRepository.deleteItemFromDynamo(oldDynamoEntry);
             } else if (entry != null) {

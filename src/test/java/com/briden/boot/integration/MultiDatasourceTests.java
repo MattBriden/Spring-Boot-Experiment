@@ -1,11 +1,11 @@
 package com.briden.boot.integration;
 
-import com.briden.boot.config.DynamoTransactional;
 import com.briden.boot.entity.dynamo.DynamoEntry;
 import com.briden.boot.repository.dynamo.DynamoService;
 import com.briden.boot.repository.jpa.IEntryRepository;
 import com.briden.boot.resources.DataResource;
 import com.briden.boot.service.MultiDatasourceService;
+import org.hibernate.HibernateException;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -52,8 +52,8 @@ public class MultiDatasourceTests extends BaseIntegrationTest {
         resource.setId(id);
         resource.setCompanyId("2");
 
-        doThrow(RuntimeException.class).when(entryRepository).save(any());
-        assertThrows(RuntimeException.class,
+        doThrow(HibernateException.class).when(entryRepository).save(any());
+        assertThrows(HibernateException.class,
                 () -> multiDatasourceService.saveEntries(resource));
 
         DynamoEntry entry = new DynamoEntry();
@@ -74,8 +74,8 @@ public class MultiDatasourceTests extends BaseIntegrationTest {
         entry.setCompanyId("4");
         dynamoRepository.saveToDynamo(entry);
 
-        doThrow(RuntimeException.class).when(entryRepository).save(any());
-        assertThrows(RuntimeException.class,
+        doThrow(HibernateException.class).when(entryRepository).save(any());
+        assertThrows(HibernateException.class,
                 () -> multiDatasourceService.saveEntries(resource));
 
         assertNotNull(dynamoRepository.getItemFromDynamo(entry));
